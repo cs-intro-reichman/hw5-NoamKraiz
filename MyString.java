@@ -8,7 +8,8 @@ public class MyString {
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
-        //// Put your other tests here.
+        // Put your other tests here.
+        
     }
 
     /**
@@ -21,7 +22,15 @@ public class MyString {
      */
     public static int countChar(String str, char ch) {
         //// Replace the following statement with your code
-        return 0;
+        
+        int count =0;
+        if (str == "") return 0;
+        else{
+                for(int i=0; i< str.length(); i++){
+                    if(str.charAt(i)==ch)count++;
+                }
+            }
+        return count;
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
@@ -36,8 +45,29 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
+         //// Replace the following statement with your code 
+        if (str1.length()>str2.length()) return false;
+        if(str1.equals(str2)) return true;
+        if(str1=="" || str2=="") return true;
+        else{
+            boolean flag=false;
+            char ch=' ';
+            int j=0;
+            for(int i=0; i<str1.length(); i++){
+                ch=str1.charAt(i);
+                while (!flag && j<str2.length()) {
+                    if(ch==str2.charAt(j)) flag=true;
+                    j++;
+                }
+                if(flag==false)return false;
+                else {
+                    if(countChar(str2, ch)<countChar(str1, ch))return false;
+                    flag =false;
+                    j=0;
+                }
+            }
+        }
+        return true;
     }
 
     /** Returns a string which is the same as the given string, with a space
@@ -50,7 +80,14 @@ public class MyString {
      */
     public static String spacedString(String str) {
         //// Replace the following statement with your code
-        return null;
+        if(str=="") return "";
+        int i=1;
+        String ans =str.charAt(0)+"";
+        while (i<str.length()) {
+            ans +=" "+str.charAt(i);
+            i++;
+        }
+        return ans;
     }
   
     /**
@@ -65,7 +102,16 @@ public class MyString {
      */
     public static String randomStringOfLetters(int n) {
         //// Replace the following statement with your code
-        return null;
+        if (n==0) return "/";
+        else{
+            int j=0;
+            String str="";
+            for(int i=0; i<n; i++){
+                j =(int)((Math.random()*(121-97+1)+97));
+                str += (char)j;
+            }
+        return str;
+        }
     }
 
     /**
@@ -79,7 +125,32 @@ public class MyString {
      */
     public static String remove(String str1, String str2) {
        //// Replace the following statement with your code
-        return null;
+       if(str1=="" && str2=="")return "";
+       if(str2=="") return str1;
+       String ans="";
+       char ch=' ';
+       boolean flag=false;
+       int j=0;
+       int k=0;
+       for(int i=0; i<str1.length(); i++){
+            ch = str1.charAt(i);
+            while (j<str2.length() && !flag) {
+                if (str2.charAt(j)==ch) flag=true;
+                else j++;
+            }
+            if(flag==false) ans += ch;
+            else {
+                k = countChar(str1, ch)-countChar(str2, ch);
+                if(k>=1 && countChar(ans, ch)<1){
+                    for(int t=0; t<k;t++){
+                        ans += ch;
+                    }
+                }
+                flag=false;
+            }
+            j=0;
+        }
+        return ans;
     }
 
     /**
