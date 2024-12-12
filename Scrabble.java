@@ -62,8 +62,9 @@ public class Scrabble {
 		//// Replace the following statement with your code
 		int score=0;
 		int ch=0;
-		if(word.length()==HAND_SIZE) return 50;
-		if(MyString.subsetOf(word, "runi")) return 1000;
+		if(word==" ") return 0;
+		if(word.length()==HAND_SIZE) score+= 50;
+		if(MyString.subsetOf(word, "runi")) score+= 1000;
 		else {
 			for(int i=0; i<word.length(); i++){
 				ch = word.charAt(i)-97; /// trying to make a letter to be her ASCI value 
@@ -97,8 +98,8 @@ public class Scrabble {
 		// the stream of characters coming from the keyboard. Used for reading the user's inputs.   
 		In in = new In();
 		while (hand.length() > 0) {
-			System.out.println("Current Hand: " + MyString.spacedString(hand));
-			System.out.println("Enter a word, or '.' to finish playing this hand:");
+			System.out.println("Current Hand: " + MyString.spacedString(hand)+"\n");
+			System.out.println("Enter a word, or '.' to finish playing this hand:\n");
 			// Reads the next "token" from the keyboard. A token is defined as a string of 
 			// non-whitespace characters. Whitespace is either space characters, or  
 			// end-of-line characters.
@@ -106,16 +107,16 @@ public class Scrabble {
 			//// Replace the following break statement with code
 			//// that completes the hand playing loop
 			if( MyString.subsetOf(input, ".") && !MyString.subsetOf(input,hand)){
-				System.out.println("End of hand. Total score: " + score + " points");
+				System.out.println("End of hand. Total score: " + score + " points\n");
 				break;
 			}
 			else if (isWordInDictionary(input) && MyString.subsetOf(input, hand)){
 				hand = MyString.remove(hand, input);
 				score += wordScore(input);
 				if (hand.length() == 0) {
-				    System.out.println("Ran out of letters. Total score: " + score + " points");
+				    System.out.println("Ran out of letters. Total score: " + score + " points\n");
 			    } else {
-				    System.out.println("End of hand. Total score: " + score + " points");
+				    System.out.println("End of hand. Total score: " + score + " points\n");
 			    }
 			}
 		}
@@ -150,8 +151,8 @@ public class Scrabble {
 		////testBuildingTheDictionary();  
 		////testScrabbleScore();    
 		////testCreateHands();  
-		//// testPlayHands();
-		playGame();
+		////testPlayHands();
+		//// playGame();
 	}
 
 	public static void testBuildingTheDictionary() {
