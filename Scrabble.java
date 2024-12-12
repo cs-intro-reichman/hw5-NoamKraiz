@@ -66,13 +66,11 @@ public class Scrabble {
 		if(word=="") return 0;
 		if(word.length()==HAND_SIZE) score+= 50;
 		if(MyString.subsetOf("runi", word )) score+= 1000;
-		else {
-			for(int i=0; i<word.length(); i++){
-				ch = word.charAt(i)-97; /// trying to make a letter to be her ASCI value 
-				score += SCRABBLE_LETTER_VALUES[ch];
-			}
-			score *= word.length();
+		for(int i=0; i<word.length(); i++){
+			ch = word.charAt(i)-97; /// trying to make a letter to be her ASCI value 
+			score += SCRABBLE_LETTER_VALUES[ch];
 		}
+		score *= word.length();		
 		return score;
 	}
 
