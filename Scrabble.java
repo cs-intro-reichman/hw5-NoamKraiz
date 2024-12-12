@@ -49,6 +49,7 @@ public class Scrabble {
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
 		//// Replace the following statement with your code
+		if(word == "") return true;
 		for(int i=0; i<DICTIONARY.length; i++){
 			if(MyString.subsetOf(word,DICTIONARY[i])) return true;
 		}
@@ -62,9 +63,9 @@ public class Scrabble {
 		//// Replace the following statement with your code
 		int score=0;
 		int ch=0;
-		if(word==" ") return 0;
+		if(word=="") return 0;
 		if(word.length()==HAND_SIZE) score+= 50;
-		if(MyString.subsetOf(word, "runi")) score+= 1000;
+		if(MyString.subsetOf("runi", word )) score+= 1000;
 		else {
 			for(int i=0; i<word.length(); i++){
 				ch = word.charAt(i)-97; /// trying to make a letter to be her ASCI value 
@@ -97,7 +98,7 @@ public class Scrabble {
 		// Declares the variable in to refer to an object of type In, and initializes it to represent
 		// the stream of characters coming from the keyboard. Used for reading the user's inputs.   
 		In in = new In();
-		while (hand.length() > 0) {
+		while (hand !="" && hand.length() > 0) {
 			System.out.println("Current Hand: " + MyString.spacedString(hand)+"\n");
 			System.out.println("Enter a word, or '.' to finish playing this hand:\n");
 			// Reads the next "token" from the keyboard. A token is defined as a string of 
