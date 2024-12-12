@@ -102,7 +102,7 @@ public class MyString {
      */
     public static String randomStringOfLetters(int n) {
         //// Replace the following statement with your code
-        if (n==0) return "/";
+        if (n==0) return "";
         else{
             int j=0;
             String str="";
